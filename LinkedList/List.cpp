@@ -17,9 +17,14 @@ class List
 {
 private:
   Node *head;
+  Node *tail;
 
 public:
-  List() { head = nullptr; }
+  List() { 
+    head = nullptr; 
+    tail = nullptr;
+}
+
 
   void insert(int value)
   {
@@ -27,14 +32,11 @@ public:
     if (head == nullptr)
     {
       head = newNode;
+      tail= newNode;
       return;
     }
-    Node *temp = head;
-    while (temp->next != nullptr)
-    {
-      temp = temp->next;
-    }
-    temp->next = newNode;
+    tail->next = newNode;
+    tail = newNode;
   }
 
   void insertFirst(int value)
@@ -51,20 +53,15 @@ public:
       cout << "List Empty";
       return;
     }
-    if (head->next == nullptr)
-    {
-      delete head;
-      head = nullptr;
-      return;
-    }
 
-    Node *temp = head;
-    while (temp->next->next != nullptr)
-    {
+    Node* temp = head;
+    while(temp->next->next != nullptr){
       temp = temp->next;
     }
+
     delete temp->next;
     temp->next = nullptr;
+    tail = temp;
   }
 
   void removeFirst()
@@ -85,6 +82,12 @@ public:
     if (head == nullptr)
       return -1;
     return head->value;
+  }
+  int getLast(){
+    if (head == nullptr)
+      return -1;
+    return tail->value;
+  
   }
 
   void print()
@@ -123,12 +126,33 @@ public:
   }
   int peek()
   {
-    int n = l.getHead();
+    return l.getHead();
   }
   void print()
   {
     l.print();
   }
+};
+
+class Queue{
+private:
+  List l;
+public:
+  Queue(){}
+  ~Queue() {}
+
+  void append(int value){
+    l.insert(value);
+  }
+
+  void dequeue(){
+    l.removeFirst();
+  }
+
+  int front(){
+    return l.getHead();
+  }
+
 };
 
 int main()
