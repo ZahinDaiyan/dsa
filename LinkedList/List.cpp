@@ -20,11 +20,11 @@ private:
   Node *tail;
 
 public:
-  List() { 
-    head = nullptr; 
+  List()
+  {
+    head = nullptr;
     tail = nullptr;
-}
-
+  }
 
   void insert(int value)
   {
@@ -32,7 +32,7 @@ public:
     if (head == nullptr)
     {
       head = newNode;
-      tail= newNode;
+      tail = newNode;
       return;
     }
     tail->next = newNode;
@@ -54,8 +54,9 @@ public:
       return;
     }
 
-    Node* temp = head;
-    while(temp->next->next != nullptr){
+    Node *temp = head;
+    while (temp->next->next != nullptr)
+    {
       temp = temp->next;
     }
 
@@ -83,11 +84,11 @@ public:
       return -1;
     return head->value;
   }
-  int getLast(){
+  int getLast()
+  {
     if (head == nullptr)
       return -1;
     return tail->value;
-  
   }
 
   void print()
@@ -134,25 +135,59 @@ public:
   }
 };
 
-class Queue{
+class Queue
+{
 private:
   List l;
+
 public:
-  Queue(){}
+  Queue() {}
   ~Queue() {}
 
-  void append(int value){
+  void append(int value)
+  {
     l.insert(value);
   }
 
-  void dequeue(){
+  void dequeue()
+  {
     l.removeFirst();
   }
 
-  int front(){
+  int front()
+  {
     return l.getHead();
   }
+};
+struct DNode
+{
+  int value;
+  DNode *next;
+  DNode *prev;
 
+  DNode(int value)
+  {
+    this->value = value;
+    this->next = nullptr;
+    this->prev = nullptr;
+  }
+};
+
+class DoublyLinkedList
+{
+private:
+  DNode *head;
+  DNode *tail;
+
+public:
+  DoublyLinkedList()
+  {
+    head = nullptr;
+    tail = nullptr;
+  }
+  void insert(int value)
+  {
+  }
 };
 
 int main()
